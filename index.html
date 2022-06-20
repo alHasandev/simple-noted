@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Submission: Dasar Pemograman - Mohamad Albie - Dicoding</title>
+
+    <!-- Load cdn styles -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,400;0,700;1,300;1,400&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Load local styles -->
+    <link rel="stylesheet" href="assets/css/variable.css" />
+    <link rel="stylesheet" href="assets/css/reset.css" />
+    <!-- <link rel="stylesheet" href="assets/css/debug.css" /> -->
+    <link rel="stylesheet" href="assets/css/style.css" />
+  </head>
+  <body>
+    <header id="navbar" class="navbar">
+      <section class="container">
+        <div class="brand">
+          <h1>Simple Noted</h1>
+        </div>
+
+        <!-- Navbar Toggle -->
+        <input
+          type="checkbox"
+          name="topnav-toggle"
+          id="topnav-toggle"
+          class="topnav-toggle"
+        />
+        <label for="topnav-toggle">
+          <hr />
+        </label>
+        <!-- ---Navbar Toggle -->
+
+        <nav id="topnav" class="topnav">
+          <ul class="nav-list container">
+            <li>
+              <label for="new-group">Group</label>
+            </li>
+            <li>
+              <label for="new-tag">Tag</label>
+            </li>
+            <li>
+              <a href="#about">About</a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+    </header>
+    <main class="container" id="main-container">
+      <div id="content" class="content">
+        <header id="home">
+          <img
+            src="assets/images/vecteezy_sticky_notes.jpg"
+            alt="https://www.vecteezy.com/ free image"
+            class="content-header-bg"
+          />
+          <h2>Menyimpan catatan secara sederhana di browser</h2>
+          <p>
+            Simpan catatan penting anda dengan mudah
+            <q><strong>Simple Noted</strong> it</q>
+          </p>
+          <p>
+            Aplikasi ini menggunakan <strong>local storage</strong> (data
+            tersimpan secara lokal di browser) jadi anda tidak perlu khawatir
+            catatan anda akan hilang saat anda menutup browser.
+          </p>
+          <div id="note-controls" class="note-controls">
+            <!-- Tambahkan catatan baru -->
+            <section class="note-control secondary">
+              <input
+                type="checkbox"
+                name="new-note"
+                id="new-note"
+                class="new-note toggler"
+              />
+              <label for="new-note" class="note-control-label">Tulis</label>
+              <form
+                onsubmit="submitNewNote(event)"
+                onreset="resetForm(event)"
+                id="new-note-form"
+                class="new-note-form note-control-form"
+                data-toggler="#new-note"
+              >
+                <section>
+                  <h3>Tulis Catatan baru anda</h3>
+                </section>
+                <section class="grid-col-2">
+                  <div class="flex-col">
+                    <label for="group-input">Grup</label>
+                    <select
+                      name="group-input"
+                      id="group-input"
+                      class="form-control"
+                    >
+                      <!-- Option Gruop akan dirender di javascipt -->
+                    </select>
+                  </div>
+                  <div class="flex-col">
+                    <label for="tag-input">Tag</label>
+                    <select
+                      name="tag-input"
+                      id="tag-input"
+                      class="form-control"
+                    >
+                      <!-- Option Tag akan dirender di javascipt -->
+                    </select>
+                  </div>
+                </section>
+                <section>
+                  <div class="flex-col mb-4">
+                    <label for="title">Judul</label>
+                    <input
+                      type="text"
+                      name="title"
+                      id="title"
+                      class="form-control"
+                      required
+                    />
+                  </div>
+                  <div class="flex-col">
+                    <label for="description">Catatan</label>
+                    <textarea
+                      type="text"
+                      name="description"
+                      id="description"
+                      class="form-control"
+                      required
+                    ></textarea>
+                  </div>
+                </section>
+                <section class="flex flex-end gap-4">
+                  <button type="reset" class="btn cyan--secondary">
+                    Batal
+                  </button>
+                  <button type="submit" class="btn cyan--primary">
+                    Simpan
+                  </button>
+                </section>
+              </form>
+            </section>
+            <!-- /Tambahkan catatan baru -->
+
+            <!-- Group catatan -->
+            <section class="note-control invisible">
+              <input
+                type="checkbox"
+                name="new-group"
+                id="new-group"
+                class="new-group toggler"
+              />
+              <label for="new-group" class="note-control-label"></label>
+              <form
+                onsubmit="submitNewGroup(event)"
+                onreset="resetForm(event)"
+                id="new-group-form"
+                class="new-group-form note-control-form"
+                data-toggler="#new-group"
+              >
+                <section>
+                  <h3>Buat Group Baru</h3>
+                </section>
+                <section class="grid-col-2">
+                  <div class="flex-col">
+                    <label for="group-title">Judul</label>
+                    <input
+                      name="group-title"
+                      id="group-title"
+                      class="form-control"
+                    />
+                  </div>
+                  <div class="flex-col">
+                    <label for="group-subtitle">Sub Judul</label>
+                    <input
+                      name="group-subtitle"
+                      id="group-subtitle"
+                      class="form-control"
+                    />
+                  </div>
+                </section>
+                <section class="flex flex-end gap-4">
+                  <button type="reset" class="btn cyan--secondary">
+                    Batal
+                  </button>
+                  <button type="submit" class="btn cyan--primary">
+                    Simpan
+                  </button>
+                </section>
+              </form>
+            </section>
+            <!-- /Group catatan -->
+
+            <!-- Tag baru -->
+            <section class="note-control invisible">
+              <input
+                type="checkbox"
+                name="new-tag"
+                id="new-tag"
+                class="new-tag toggler"
+              />
+              <label for="new-tag" class="note-control-label">Tag</label>
+              <form
+                onsubmit="submitNewTag(event)"
+                onreset="resetForm(event)"
+                id="new-tag-form"
+                class="new-tag-form note-control-form"
+                data-toggler="#new-tag"
+              >
+                <section>
+                  <h3>Buat Tag Baru</h3>
+                </section>
+                <section class="flex-col">
+                  <label for="tag-value">Nama Tag</label>
+                  <input name="tag-value" id="tag-value" class="form-control" />
+                </section>
+                <section class="flex flex-end gap-4">
+                  <button type="reset" class="btn cyan--secondary">
+                    Batal
+                  </button>
+                  <button type="submit" class="btn cyan--primary">
+                    Simpan
+                  </button>
+                </section>
+              </form>
+            </section>
+            <!-- /Tag baru -->
+          </div>
+        </header>
+
+        <!-- Daftar artikel/catatan akan di render dari javascipt -->
+      </div>
+      <aside class="sidebar">
+        <article id="about">
+          <header id="profile" class="profile">
+            <figure>
+              <img
+                src="assets/images/profile-3x4--amber.png"
+                alt="Mohamad Albie"
+              />
+              <figcaption>Mohamad Albie</figcaption>
+            </figure>
+          </header>
+          <hr />
+          <section id="intro">
+            <h2>About Me</h2>
+            <p>
+              Halo, Salam Kenal. Saya adalah seorang
+              <em>Full-time Learner</em> dan <em>aspired Software Engineer.</em>
+            </p>
+            <p>
+              Bercita-cita menjadi <em>Software Engineer</em> handal yang dapat
+              berkontribusi dalam membangun produk digital yang bermanfaat dan
+              dapat diandalkan.
+            </p>
+          </section>
+        </article>
+      </aside>
+    </main>
+    <footer>
+      <p class="container">
+        <em>Alhamdulillah</em>. Terimakasih kepada
+        <a href="https://dicoding.com" target="_blank" class="reference">
+          Dicoding
+        </a>
+        dan <a href="https://idcamp.ioh.co.id/">IDCamp Indosat</a> yang telah
+        membagikan kesempatan belajar pemrograman dengan jalur belajar
+        <strong>React Web Developer</strong> secara gratis.
+      </p>
+      <p class="container">
+        Copyright &copy; Mohamad Albie -
+        <span id="footer-copyright-date">2022</span>
+      </p>
+    </footer>
+
+    <!-- Form untuk melihat dan mengedit catatan -->
+    <section class="note-control invisible">
+      <input
+        type="checkbox"
+        name="update-note"
+        id="update-note"
+        class="update-note toggler"
+      />
+      <label for="update-note" class="note-control-label">test</label>
+      <form
+        onsubmit="submitUpdatedNote(event)"
+        onreset="resetForm(event)"
+        id="update-note-form"
+        class="update-note-form note-control-form"
+        data-toggler="#update-note"
+      >
+        <input type="hidden" name="slug-input" />
+        <section>
+          <h3>Catatan Anda</h3>
+        </section>
+        <section class="grid-col-2">
+          <div class="flex-col">
+            <label for="group-input">Grup</label>
+            <select name="group-input" id="group-input2" class="form-control">
+              <!-- Option Gruop akan dirender di javascipt -->
+            </select>
+          </div>
+          <div class="flex-col">
+            <label for="tag-input">Tag</label>
+            <select name="tag-input" id="tag-input2" class="form-control">
+              <!-- Option Tag akan dirender di javascipt -->
+            </select>
+          </div>
+        </section>
+        <section>
+          <div class="flex-col mb-4">
+            <label for="title">Judul</label>
+            <input
+              type="text"
+              name="title"
+              id="title"
+              class="form-control"
+              required
+            />
+          </div>
+          <div class="flex-col">
+            <label for="description">Catatan</label>
+            <textarea
+              type="text"
+              name="description"
+              id="description"
+              class="form-control"
+              required
+            ></textarea>
+          </div>
+        </section>
+        <section class="flex flex-end gap-4">
+          <button type="reset" class="btn cyan--secondary">Tutup</button>
+          <button type="submit" class="btn cyan--primary">Update</button>
+        </section>
+      </form>
+    </section>
+    <!-- /Form untuk melihat dan mengedit catatan -->
+
+    <!-- Load local scripts -->
+    <script src="assets/js/main.js"></script>
+  </body>
+</html>

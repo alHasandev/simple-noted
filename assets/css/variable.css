@@ -1,0 +1,28 @@
+:root {
+  /* Colors */
+  --black: rgb(61,61,61);
+  --dark--hsl: 211 28% 25%;
+  --dark: rgb(46, 63, 82);
+  --gray: rgb(107,114,128);
+  --light: rgb(239,243,244);
+  --white: rgb(255,255,255);
+  --orange-light: rgb(245,159,12);
+  --orange-dark: rgb(241, 142, 20);
+  --cyan--primary: rgb(17,197,198);
+  --cyan--secondary: rgb(12,155,171);
+  --cyan--hsl: 186 87% 36%;
+
+  /* Shadow */
+  --box-shadow: 1px 4px 8px -2px rgb(46 63 82 / .2);
+  --box-shadow--lg: 1px 8px 16px 1px rgb(46 63 82 / .2);
+
+  /* Sizes */
+  --topnav-toggle-size: 2.25rem;
+  --font--xs: .75rem;
+  --font--sm: .875rem;
+  --font--base: 1rem;
+  --font--medium: 1.25rem;
+  --font--lg: 2rem;
+  --font--xl: 2.5rem;
+  --navbar-height: 4rem;
+}
